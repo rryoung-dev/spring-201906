@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springsi.dao.UserDao">
+	
+	<select id="selectUserByKey"
+			parameterType="int"
+			resultType="com.example.springsi.model.User">
+		select 	userid,
+				username,
+				age
+		from	user_demo
+		where	userid = #{userid}
+	</select>
+	
+	<select id="selectAllUsers"
+			resultType="com.example.springsi.model.User">
+		select 	*
+		from	user_demo
+	</select>
+	
+	<insert id="insertUser" 
+			parameterType = "com.example.springsi.model.User">
+		insert into user_demo (userid, username, age)
+		values (#{userid}, #{username}, #{age})
+	</insert>
+	
+	<update id="updateUser"
+			parameterType="com.example.springsi.model.User">
+		update user_demo
+		set username = #{username}, age=#{age}
+		where	userid = #{userid}
+	</update>
+
+	<delete id="deleteUser"
+			parameterType="com.example.springsi.model.User">
+		DELETE FROM user_demo
+		WHERE userid = #{userid}
+	</delete>
+
+</mapper>
